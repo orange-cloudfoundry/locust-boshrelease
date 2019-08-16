@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -eu
+STORE_DIR=/var/vcap/data/nginx/tmp
+mkdir -p ${STORE_DIR}
+<%
+def check_auth_user(user)
+  username = user['name']
+  if username.nil? || username.empty?
+    raise "User must be configured with a 'name' attribute: '#{user}'"
+  end
+
+  password = user['password']
+  if password.nil? || password.empty?
+    raise "User must be configured with a 'password' attribute: '#{user}'"
+  end
+end
+%>
+# Locust nginx htpasswd
+locust_auth_file="${STORE_DIR}/htpasswd_locust"
+if [ -f "$locust_auth_file" ]; then
+    rm "$locust_auth_file"
+fi
+<% p('locust.nginx.auth_users', []).each do |user| %>
+<% check_auth_user(user) %>
+echo "<%= user['name'] %>:`openssl passwd -1 -quiet "<%= user['password'] %>"`" >> "$locust_auth_file"
+<% end %>
+

@@ -1,0 +1,8 @@
+---
+name: locust
+
+dependencies:
+- python3
+
+files:
+- locust/*

@@ -1,0 +1,5 @@
+check process nginx
+  with pidfile   /var/vcap/sys/run/bpm/nginx/nginx.pid
+  start program "/var/vcap/jobs/bpm/bin/bpm start nginx"
+  stop program  "/var/vcap/jobs/bpm/bin/bpm stop  nginx"
+group vcap

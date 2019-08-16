@@ -1,0 +1,48 @@
+---
+name: locust
+
+templates:
+  bpm.yml.erb: config/bpm.yml
+  locustfile.py.erb: config/locustfile.py
+
+provides:
+  - name: locust
+    type: locust
+    properties:
+      - locust.master_bind_port
+      - locust.web_port
+
+consumes:
+  - name: locust
+    type: locust
+    optional: true
+
+packages:
+  - locust
+  - python3
+
+properties:
+  locust.host:
+    description: "host where to perform test. this can be empty if you set it directly in your locustfile"
+  locust.locustfile:
+    description: "define your own locustfile"
+    default: ""
+  locust.web_port:
+    description: "Port on which to run web host"
+    default: 8080
+  locust.loglevel:
+    description: "Choose between DEBUG/INFO/WARNING/ERROR/CRITICAL."
+    default: INFO
+  locust.heartbeat_liveness:
+    description: "set number of seconds before failed heartbeat from slave"
+    default: 60
+  locust.heartbeat_interval:
+    description: "set number of seconds delay between slave heartbeats to master"
+    default: 30
+  locust.master_bind_port:
+    description: |
+      Port that locust master should bind to. Only used when
+      running with --master. Note that Locust will also use
+      this port + 1, so by default the
+      master node will bind to 5557 and 5558.
+    default: 5557

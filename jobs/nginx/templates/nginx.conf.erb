@@ -1,0 +1,64 @@
+user             vcap;
+worker_processes 2;
+daemon           off;
+
+error_log /var/vcap/sys/log/nginx/nginx_error.log;
+pid       /var/vcap/sys/run/bpm/nginx/nginx.pid;
+
+events {
+  use                epoll;
+  multi_accept       on;
+  worker_connections 8192;
+}
+
+http {
+  include       /var/vcap/jobs/nginx/etc/mime.types;
+  default_type  text/html;
+  server_tokens off;
+
+  access_log /var/vcap/sys/log/nginx/nginx_access.log;
+
+  sendfile    on;
+  tcp_nopush  on;
+  tcp_nodelay on;
+
+  client_header_buffer_size 1k;
+  large_client_header_buffers 4 8k;
+
+  types_hash_max_size 2048;
+  send_timeout 2;
+  client_max_body_size    5000m;
+  client_body_buffer_size 128k;
+  client_body_timeout     10;
+  client_header_timeout   30;
+  keepalive_timeout         7200;
+  keepalive_requests        10000;
+  reset_timedout_connection on;
+  open_file_cache          max=1000 inactive=120s;
+  open_file_cache_valid    120s;
+  open_file_cache_min_uses 1;
+  open_file_cache_errors   on;
+  gzip                on;
+  gzip_http_version   1.1;
+  gzip_vary           on;
+  gzip_comp_level     6;
+  gzip_proxied        any;
+  gzip_types          text/plain text/css application/javascript application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+  gzip_buffers        16 8k;
+  gzip_disable        "MSIE [1-6]\.(?!.*SV1)";
+
+
+  server_names_hash_bucket_size 64;
+
+  upstream locust {
+    server <%=link("locust").instances.find {|locust| locust.bootstrap }.address %>:<%= p('locust.web_port') %>;
+  }
+
+  server {
+    listen                  <%= p('locust.nginx.http_port') %>;
+    server_name             _;
+    server_name_in_redirect off;
+    include /var/vcap/jobs/nginx/etc/locust_location.conf;
+  }
+
+}

@@ -1,0 +1,5 @@
+check process locust
+  with pidfile   /var/vcap/sys/run/bpm/locust/locust.pid
+  start program "/var/vcap/jobs/bpm/bin/bpm start locust"
+  stop program  "/var/vcap/jobs/bpm/bin/bpm stop  locust"
+group vcap

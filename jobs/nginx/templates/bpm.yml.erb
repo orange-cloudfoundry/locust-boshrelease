@@ -1,0 +1,15 @@
+processes:
+  - name: nginx
+    executable: /var/vcap/packages/nginx/sbin/nginx
+    args:
+      - "-p"
+      - "/var/vcap/data/nginx/tmp"
+      - "-c"
+      - "/var/vcap/jobs/nginx/etc/nginx.conf"
+    unsafe:
+      privileged: true
+    additional_volumes:
+      - path: /var/vcap/sys/run/bpm/nginx
+        writable: true
+    capabilities:
+      - NET_BIND_SERVICE

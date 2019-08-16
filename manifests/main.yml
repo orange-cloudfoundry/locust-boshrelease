@@ -1,0 +1,69 @@
+---
+name: locust
+
+addons:
+  - name: bpm
+    include:
+      stemcell:
+        - os: ubuntu-xenial
+    jobs:
+      - name: bpm
+        release: bpm
+
+instance_groups:
+  - name: locust
+    azs: [z1,z2,z3]
+    instances: 3
+    jobs:
+      - name: locust
+        release: locust
+        properties:
+          locust:
+            host: ((locust_host))
+            web_port: 8080
+            heartbeat_liveness: 60
+            heartbeat_interval: 30
+            master_bind_port: 5557
+    vm_type: default
+    stemcell: default
+    networks:
+      - name: default
+  - name: nginx
+    azs: [z1,z2,z3]
+    instances: 1
+    jobs:
+      - name: nginx
+        release: locust
+        properties:
+          locust:
+            web_port: 8080
+            nginx:
+              http_port: 8080
+    vm_type: default
+    stemcell: default
+    networks:
+      - name: default
+
+update:
+  canaries: 1
+  max_in_flight: 32
+  canary_watch_time: 1000-100000
+  update_watch_time: 1000-100000
+  serial: false
+
+stemcells:
+  - alias: default
+    os: ubuntu-xenial
+    version: latest
+
+manifest_version: v1.0.0
+
+releases:
+  - name: locust
+    version: 1.0.1
+    url: https://github.com/orange-cloudfoundry/locust-boshrelease/releases/download/v1.0.0/locust-1.0.0.tgz
+    sha1: bd28cfc01da93ac310029253abf2caf06b41a9bd
+  - name: bpm
+    url: https://bosh.io/d/github.com/cloudfoundry/bpm-release?v=1.1.0
+    version: 1.1.0
+    sha1: 82e83a5e8ebd6e07f6ca0765e94eb69e03324a19

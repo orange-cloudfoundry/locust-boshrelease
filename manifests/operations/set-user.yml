@@ -1,0 +1,11 @@
+- type: replace
+  path: /variables?/-
+  value:
+    name: locust_user
+    type: user
+
+- type: replace
+  path: /instance_groups/name=nginx/jobs/name=nginx/properties/locust/nginx/auth_users?/-
+  value:
+    name: ((locust_user.username))
+    password: ((locust_user.password))

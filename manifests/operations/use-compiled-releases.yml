@@ -1,0 +1,22 @@
+- type: replace
+  path: /releases/name=locust?
+  value:
+    name: locust
+    version: ((squid.version))
+    sha1: ((squid.sha1))
+    url: ((repository_base))/squid/squid-((squid.version))-((version-stemcell.os))-((version-stemcell.major)).tgz
+    origin: https://github.com/cloudfoundry-community/squid-boshrelease/releases/download/v((squid.version))/squid-((squid.version)).tgz
+    stemcell:
+      os: ((version-stemcell.os))
+      version: "((version-stemcell.major)).((version-stemcell.minor))"
+- type: replace
+  path: /releases/name=bpm?
+  value:
+    name: bpm
+    version: ((bpm.version))
+    sha1: ((bpm.sha1))
+    url: ((repository_base))/bpm/bpm-((bpm.version))-((version-stemcell.os))-((version-stemcell.major)).tgz
+    origin: https://bosh.io/d/github.com/cloudfoundry-incubator/bpm-release?v=((bpm.version))
+    stemcell:
+      os: ((version-stemcell.os))
+      version: "((version-stemcell.major)).((version-stemcell.minor))"

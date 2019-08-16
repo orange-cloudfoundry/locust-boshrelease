@@ -1,0 +1,31 @@
+---
+name: nginx
+
+templates:
+  bpm.yml.erb: config/bpm.yml
+  nginx.conf.erb: etc/nginx.conf
+  locust_location.conf: etc/locust_location.conf
+  mime.types: etc/mime.types
+  pre-start: bin/pre-start
+
+consumes:
+  - name: locust
+    type: locust
+
+packages:
+  - nginx
+
+properties:
+  locust.nginx.http_port:
+    description: "Port to listen for nginx"
+    default: 8080
+  locust.web_port:
+    description: "Port on which to run web host"
+    default: 8080
+  locust.nginx.auth_users:
+    description: "Array of Alertmanager auth users"
+    example:
+      - name: user1
+        password: password1
+      - name: user2
+        password: password2
