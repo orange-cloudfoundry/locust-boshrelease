@@ -1,0 +1,22 @@
+---
+name: locust_exporter
+
+templates:
+  bpm.yml.erb: config/bpm.yml
+
+consumes:
+  - name: locust
+    type: locust
+
+packages:
+  - locust_exporter
+  - python3
+
+properties:
+  locust.host:
+    description: "host where tests are performed to add label host to metrics. this can be empty."
+  locust.web_port:
+    description: "Port on which to run web host"
+    default: 8080
+  locust_exporter.port:
+    description: "port to listen for server"

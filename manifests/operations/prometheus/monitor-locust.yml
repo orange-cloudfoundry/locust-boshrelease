@@ -1,0 +1,41 @@
+- type: replace
+  path: /instance_groups/name=prometheus2/jobs/name=prometheus2/properties/prometheus/scrape_configs/-
+  value:
+    job_name: locust_exporter
+    scheme: http
+    metrics_path: "/"
+    tls_config:
+      insecure_skip_verify: true
+    file_sd_configs:
+      - files:
+          - /var/vcap/store/bosh_exporter/bosh_target_groups.json
+    relabel_configs:
+      - action: keep
+        regex: locust_exporter
+        source_labels:
+          - __meta_bosh_job_process_name
+      - regex: (.*)
+        replacement: ${1}:8089
+        source_labels:
+          - __address__
+        target_label: __address__
+
+#- type: replace
+#  path: /instance_groups/name=grafana/jobs/name=grafana/properties/grafana/prometheus/dashboard_folders/name=Locust?
+#  value:
+#    name: Locust
+#    files:
+#      - /var/vcap/jobs/locust_dashboards/*.json
+#
+#- type: replace
+#  path: /instance_groups/name=grafana/jobs/name=locust_dashboards?
+#  value:
+#    name: locust_dashboards
+#    release: locust
+#
+
+- type: replace
+  path: /releases/-
+  value:
+    name: locust
+    version: latest

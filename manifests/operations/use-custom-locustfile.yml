@@ -1,0 +1,3 @@
+- type: replace
+  path: /instance_groups/name=locust/jobs/name=locust/properties/locust/locustfile?
+  value: ((locustfile))

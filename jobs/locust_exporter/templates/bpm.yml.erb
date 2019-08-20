@@ -1,0 +1,19 @@
+processes:
+  - name: locust_exporter
+    executable: /var/vcap/packages/locust_exporter/bin/locust_exporter
+    args:
+      - <%= p('locust_exporter.port') %>
+      - "http://<%=link("locust").instances.find {|locust| locust.bootstrap }.address %>:<%= p('locust.web_port') %>"
+        <% if_p("locust.host") do |host| %>
+      - "<%= host %>"
+      <% end %>
+    env:
+      PATH: "/var/vcap/packages/python3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
+      LD_LIBRARY_PATH: "/var/vcap/packages/python3/lib"
+      C_INCLUDE_PATH: "/var/vcap/packages/python3/include"
+      PYTHONPATH: /var/vcap/packages/locust_exporter/lib/python3.6/site-packages/
+      REQUESTS_CA_BUNDLE: /etc/ssl/certs/ca-certificates.crt
+      LC_ALL: en_US.UTF-8
+      LANG: en_US.UTF-8
+    capabilities:
+      - NET_BIND_SERVICE

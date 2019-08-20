@@ -1,0 +1,10 @@
+---
+name: locust_exporter
+
+dependencies:
+  - python3
+
+files:
+  - locust_exporter/*
+  - locust_exporter/locust_exporter/*
+  - locust_exporter/wheels/*

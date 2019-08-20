@@ -7,7 +7,7 @@ from locust import HttpLocust, TaskSet, task
 class UserBehavior(TaskSet):
   @task
   def getfile(l):
-    l.client.get("/")
+    l.client.get("/", verify="/etc/ssl/certs/ca-certificates.crt")
 
 
 class WebsiteUser(HttpLocust):

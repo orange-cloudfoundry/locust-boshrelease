@@ -1,0 +1,5 @@
+check process locust_exporter
+  with pidfile   /var/vcap/sys/run/bpm/locust_exporter/locust_exporter.pid
+  start program "/var/vcap/jobs/bpm/bin/bpm start locust_exporter"
+  stop program  "/var/vcap/jobs/bpm/bin/bpm stop  locust_exporter"
+group vcap
