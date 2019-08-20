@@ -1,0 +1,11 @@
+- type: replace
+  path: /instance_groups/name=nginx/jobs/-
+  value:
+    name: locust_exporter
+    release: locust
+    properties:
+      locust:
+        host: ((locust_host))
+        web_port: 8080
+      locust_exporter:
+        port: 8089
