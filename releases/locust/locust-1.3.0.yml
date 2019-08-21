@@ -1,0 +1,57 @@
+name: locust
+version: 1.3.0
+commit_hash: 03140f8
+uncommitted_changes: false
+jobs:
+- name: locust
+  version: d45a137f4521674a702f13b37d20af8a68db0ec1df08acb281e96a35e274c3b0
+  fingerprint: d45a137f4521674a702f13b37d20af8a68db0ec1df08acb281e96a35e274c3b0
+  sha1: sha256:63b83382d425eba4e775f9150fa4b01a5d8e2fbc6a37925650e5c81b9b48e88b
+  packages:
+  - locust
+  - python3
+- name: locust_dashboards
+  version: 4e5cbcb84fa591d047056be747e65072d1d7c34a0be9bd63cd85331ae8f3028b
+  fingerprint: 4e5cbcb84fa591d047056be747e65072d1d7c34a0be9bd63cd85331ae8f3028b
+  sha1: sha256:3ae3e9107c7acf3b7614ed9e962e793ab869095417791bca7439b0c880517b91
+  packages: []
+- name: locust_exporter
+  version: 5a8b5cc36451151f9cfed8b97b77cd2500d87ad6dcb68b2a72993a96ed646c15
+  fingerprint: 5a8b5cc36451151f9cfed8b97b77cd2500d87ad6dcb68b2a72993a96ed646c15
+  sha1: sha256:f69e9207c3e02af234ef16bd89a82bb364eac607be608ee38ef3dac5c0886583
+  packages:
+  - locust_exporter
+  - python3
+- name: nginx
+  version: 1342c8d43a4642cc8a2fd3fde257cf7864e1fff067065c1d8eb0fb69f877d71e
+  fingerprint: 1342c8d43a4642cc8a2fd3fde257cf7864e1fff067065c1d8eb0fb69f877d71e
+  sha1: sha256:075f74e51b4f2bdc0f5cda904618363b82a3fff83c7476620778d49d74423474
+  packages:
+  - nginx
+packages:
+- name: locust
+  version: 865b8146db6378a1d03aab03c764e7e8d6c9ec5a49ce0c2998aef2f1da296a0e
+  fingerprint: 865b8146db6378a1d03aab03c764e7e8d6c9ec5a49ce0c2998aef2f1da296a0e
+  sha1: sha256:401c98950628cedf0cde7b57003166deb29459363d1cab86d1ae5d670574b50c
+  dependencies:
+  - python3
+- name: locust_exporter
+  version: cc821162ced59a400390d968c08276773d18cbc71775c3c2797098daa6e2deda
+  fingerprint: cc821162ced59a400390d968c08276773d18cbc71775c3c2797098daa6e2deda
+  sha1: sha256:369ca3776f8625d619276496467796a75b38660c0e367f4d4d1c5e54a44bb0c5
+  dependencies:
+  - python3
+- name: nginx
+  version: 66c3f00b386cb6166d60748308b27fa31f4285ad2eac86024e7166b29837bf0d
+  fingerprint: 66c3f00b386cb6166d60748308b27fa31f4285ad2eac86024e7166b29837bf0d
+  sha1: sha256:f8bc7f54454bf7affa59c8636795ecc2c304090258cd801e65c9dfc53fba40f6
+  dependencies: []
+- name: python3
+  version: 850f5cf587498a0d127464f069b8599593b42ee4fdf381efb62cc309ed19760a
+  fingerprint: 850f5cf587498a0d127464f069b8599593b42ee4fdf381efb62cc309ed19760a
+  sha1: sha256:154272da05fae241a02284c16c98280446f3f8897770c72132a11d2b25b608dd
+  dependencies: []
+license:
+  version: 483b12760736e6239e71b4f5d8409f05eb635659e20bba3fa4012ac27347c6c4
+  fingerprint: 483b12760736e6239e71b4f5d8409f05eb635659e20bba3fa4012ac27347c6c4
+  sha1: sha256:8fac2786640e808e1c03510fb089f0cdbd97f88483ad174a6f0f13482a81adde
