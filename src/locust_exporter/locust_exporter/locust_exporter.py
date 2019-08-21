@@ -49,7 +49,7 @@ class LocustCollector(object):
 
         if 'slave_count' in response:
             metric = Metric('locust_slave_count', 'Locust number of slaves', 'gauge')
-            metric.add_sample('locust_slave_count', value=response['slave_count'], labels={})
+            metric.add_sample('locust_slave_count', value=len(response['slaves']), labels={})
             yield metric
 
         metric = Metric('locust_fail_ratio', 'Locust failure ratio', 'gauge')

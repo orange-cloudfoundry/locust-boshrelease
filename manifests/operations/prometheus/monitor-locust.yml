@@ -20,19 +20,19 @@
           - __address__
         target_label: __address__
 
-#- type: replace
-#  path: /instance_groups/name=grafana/jobs/name=grafana/properties/grafana/prometheus/dashboard_folders/name=Locust?
-#  value:
-#    name: Locust
-#    files:
-#      - /var/vcap/jobs/locust_dashboards/*.json
-#
-#- type: replace
-#  path: /instance_groups/name=grafana/jobs/name=locust_dashboards?
-#  value:
-#    name: locust_dashboards
-#    release: locust
-#
+- type: replace
+  path: /instance_groups/name=grafana/jobs/name=grafana/properties/grafana/prometheus/dashboard_folders/name=Locust?
+  value:
+    name: Locust
+    files:
+      - /var/vcap/jobs/locust_dashboards/*.json
+
+- type: replace
+  path: /instance_groups/name=grafana/jobs/name=locust_dashboards?
+  value:
+    name: locust_dashboards
+    release: locust
+
 
 - type: replace
   path: /releases/-

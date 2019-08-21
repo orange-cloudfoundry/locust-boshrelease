@@ -1,0 +1,9 @@
+---
+name: locust_dashboards
+
+templates:
+  locust_overview.json: locust_overview.json
+
+packages: []
+
+properties: {}
