@@ -19,6 +19,11 @@
         source_labels:
           - __address__
         target_label: __address__
+      - regex: (.*)
+        replacement: ${1}
+        source_labels:
+          - __meta_bosh_deployment
+        target_label: instance
 
 - type: replace
   path: /instance_groups/name=grafana/jobs/name=grafana/properties/grafana/prometheus/dashboard_folders/name=Locust?
