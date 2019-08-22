@@ -43,7 +43,7 @@ class LocustCollector(object):
 
         metric = Metric('locust_errors', 'Locust requests errors', 'gauge')
         for err in response['errors']:
-            metric.add_sample('locust_errors', value=err['occurences'],
+            metric.add_sample('locust_errors', value=err['occurrences'],
                               labels={'host': self._host, 'path': err['name'], 'method': err['method']})
         yield metric
 
