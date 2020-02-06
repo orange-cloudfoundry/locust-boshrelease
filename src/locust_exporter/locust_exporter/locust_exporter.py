@@ -67,8 +67,11 @@ class LocustCollector(object):
             metric = Metric('locust_requests_' + mtr, 'Locust requests ' + mtr, mtype)
             for stat in response['stats']:
                 if not 'Total' in stat['name']:
+                    method = stat['method']
+                    if method is None:
+                        method = stat['name']
                     metric.add_sample('locust_requests_' + mtr, value=stat[mtr],
-                                      labels={'host': self._host, 'path': stat['name'], 'method': stat['method']})
+                                      labels={'host': self._host, 'path': stat['name'], 'method': method})
             yield metric
 
 
