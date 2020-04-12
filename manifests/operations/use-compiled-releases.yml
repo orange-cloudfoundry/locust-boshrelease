@@ -4,17 +4,11 @@
     name: locust
     version: ((locust.version))
     sha1: ((locust.sha1))
-    url: ((repository_base))/locust/locust-((locust.version))-((version-stemcell.os))-((version-stemcell.major)).tgz
-    # stemcell:
-    #   os: ((version-stemcell.os))
-    #   version: "((version-stemcell.major)).((version-stemcell.minor))"
+    url: ((repository_base))/locust/locust-((locust.version))-((version-stemcell.os))-((version-stemcell.major)).((version-stemcell.minor)).tgz
 - type: replace
   path: /releases/name=bpm?
   value:
     name: bpm
     version: ((bpm.version))
     sha1: ((bpm.sha1))
-    url: ((repository_base))/bpm/bpm-((bpm.version))-((version-stemcell.os))-((version-stemcell.major)).tgz
-    # stemcell:
-    #   os: ((version-stemcell.os))
-    #   version: "((version-stemcell.major)).((version-stemcell.minor))"
+    url: ((repository_base))/bpm/bpm-((bpm.version))-((version-stemcell.os))-((version-stemcell.major)).((version-stemcell.minor)).tgz
