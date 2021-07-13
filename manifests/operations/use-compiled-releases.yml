@@ -3,7 +3,6 @@
   value:
     name: locust
     version: ((locust.version))
-    sha1: ((locust.sha1))
     url: ((repository_base))/locust/locust-((locust.version))-((version-stemcell.os))-((version-stemcell.major)).((version-stemcell.minor)).tgz
 - type: replace
   path: /releases/name=bpm?
