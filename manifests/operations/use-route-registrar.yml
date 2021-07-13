@@ -23,5 +23,4 @@
   value:
     name: routing
     version: "((routing.version))"
-    sha1: ((routing.sha1))
     url: ((repository_base))/routing/routing-((routing.version))-((version-stemcell.os))-((version-stemcell.major)).((version-stemcell.minor)).tgz
